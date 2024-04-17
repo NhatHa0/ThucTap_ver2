@@ -21,11 +21,19 @@ const HomePage: React.FunctionComponent = () => {
           >
             <div>About</div>
           </List.Item>
+
           <List.Item
             onClick={() => navigate("/user")}
             suffix={<Icon icon="zi-arrow-right" />}
           >
             <div>User</div>
+          </List.Item>
+
+          <List.Item
+            onClick={() => navigate("/list")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>List</div>
           </List.Item>
         </List>
       </div>
