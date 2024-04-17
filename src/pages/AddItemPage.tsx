@@ -6,12 +6,16 @@ const AddItemPage: React.FC = () => {
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
+  const [itemImage, setItemImage] = useState<File | null>(null); // Thêm state cho hình ảnh
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddItem = async () => {
     setIsLoading(true);
     try {
+      const imageData = itemImage
+        ? await convertImageToBase64(itemImage)
+        : null; // Chuyển đổi hình ảnh sang base64 nếu có
       const response = await fetch(
         "https://sachapi.totdep.com/thuctap/create",
         {
@@ -19,7 +23,11 @@ const AddItemPage: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name: itemName, price: itemPrice }), // Thêm trường giá vào dữ liệu gửi đi
+          body: JSON.stringify({
+            name: itemName,
+            price: itemPrice,
+            image: imageData,
+          }), // Thêm trường hình ảnh vào dữ liệu gửi đi
         }
       );
       if (!response.ok) {
@@ -32,6 +40,25 @@ const AddItemPage: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setItemImage(file);
+    }
+  };
+
+  const convertImageToBase64 = (image: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        resolve(base64String);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(image);
+    });
   };
 
   return (
@@ -53,6 +80,9 @@ const AddItemPage: React.FC = () => {
             onChange={(e) => setItemPrice(e.target.value)}
             placeholder="Enter item price"
           />
+        </div>
+        <div>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
         </div>
         <Button onClick={handleAddItem} disabled={isLoading}>
           {isLoading ? "Adding..." : "Add Item"}

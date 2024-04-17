@@ -9,6 +9,7 @@ import User from "../pages/user";
 import List from "../pages/list";
 import AddItemPage from "../pages/AddItemPage"; // Import AddItemPage
 import EditItemPage from "../pages/EditItemPage"; // Import EditItemPage
+import DeleteItemPage from "../pages/DeleteItemPage"; // Import DeleteItemPage
 
 const MyApp = () => {
   return (
@@ -23,8 +24,12 @@ const MyApp = () => {
               <Route path="/user" element={<User />}></Route>
               <Route path="/list" element={<List />}></Route>
               <Route path="/add-item" element={<AddItemPage />}></Route>
-              <Route path="/edit-item/:id" element={<EditItemPage />} />{" "}
-              {/* Thêm Route cho EditItemPage */}
+              <Route path="/edit-item/:id" element={<EditItemPage />} />
+              <Route
+                path="/delete-item/:id"
+                element={<DeleteItemPage />}
+              />{" "}
+              {/* Thêm Route cho DeleteItemPage */}
             </AnimationRoutes>
           </ZMPRouter>
         </SnackbarProvider>
