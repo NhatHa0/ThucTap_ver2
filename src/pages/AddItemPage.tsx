@@ -6,7 +6,7 @@ const AddItemPage: React.FC = () => {
   const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
-  const [itemImage, setItemImage] = useState<File | null>(null); // Thêm state cho hình ảnh
+  const [itemImage, setItemImage] = useState<File | null>(null); 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -15,7 +15,7 @@ const AddItemPage: React.FC = () => {
     try {
       const imageData = itemImage
         ? await convertImageToBase64(itemImage)
-        : null; // Chuyển đổi hình ảnh sang base64 nếu có
+        : null; 
       const response = await fetch(
         "https://sachapi.totdep.com/thuctap/create",
         {
@@ -63,8 +63,9 @@ const AddItemPage: React.FC = () => {
 
   return (
     <Page className="page">
+      <style>{}</style>
       <div className="section-container">
-        <h2>Add Item</h2>
+        <h2>Thêm Item</h2>
         <div>
           <input
             type="text"

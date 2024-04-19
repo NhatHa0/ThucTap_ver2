@@ -42,7 +42,7 @@ const AddItemPage: React.FC = () => {
   return (
     <Page className="page">
       <div className="section-container">
-        <h2>Add Item</h2>
+        <h2>Sửa Item</h2>
         <div>
           <input
             type="text"
