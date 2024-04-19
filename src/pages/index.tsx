@@ -2,8 +2,7 @@ import React from "react";
 import { List, Page, Icon, useNavigate } from "zmp-ui";
 import { useRecoilValue } from "recoil";
 import { userState } from "../state";
-import "./css/index.css";
-
+import "../css/index.css";
 import UserCard from "../components/user-card";
 
 const HomePage: React.FunctionComponent = () => {

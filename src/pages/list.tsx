@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { List, Page, Button } from "zmp-ui";
 import { useNavigate } from "react-router-dom";
-import "./css/ListPage.css";
+import "../css/ListPage.css";
 
 interface Item {
   id: string;
